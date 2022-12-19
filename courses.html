@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <section class="courses">
+            <input type="text" @input="searchFilter" />
+
+            <div v-for="course of filteredCourses" :key="course">
+                <b>{{ course.name }}</b> {{ course.price }} $ | {{ course.duration }} h {{ course.finalProject?'| with final project':'' }}
+                <hr/>
+            </div>
+        </section>
+    </div>
+    </div>
+
+    <script type="module">
+        import { createApp } from "https://unpkg.com/vue@3/dist/vue.esm-browser.js"; createApp({ data() { return { courses: [ { name: "html", price: 50, duration: 24, finalProject: true }, { name: "css", price: 60, duration: 20, finalProject: false }, { name:
+        "js", price: 100, duration: 60, finalProject: true }, { name: "vue", price: 150, duration: 66, finalProject: true }, ], filteredCourses: [ { name: "html", price: 50, duration: 24, finalProject: true }, { name: "css", price: 60, duration: 20, finalProject:
+        false }, { name: "js", price: 100, duration: 60, finalProject: true }, { name: "vue", price: 150, duration: 66, finalProject: true }, ], }; }, methods: { searchFilter(e) { let filterKey=e.target.value; if(filterKey.trim()=='')this.filteredCourses=this.courses.slice();
+        this.filteredCourses=this.courses.filter((course) => course.name.includes( filterKey)); }, }, }).mount("#app");
+    </script>
+</body>
+
+</html>
